@@ -2,7 +2,7 @@
  * JavaScript / Canvas teaching framwork 
  * (C)opyright Hartmut Schirmacher, hschirmacher.beuth-hochschule.de 
  *
- * Module: straight_line
+ * Module: circle
  *
  * A StraighLine knows how to draw itself into a specified 2D context,
  * can tell whether a certain mouse position "hits" the object,
