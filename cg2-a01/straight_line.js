@@ -29,7 +29,7 @@ define(["util", "vec2", "scene", "point_dragger"],
 
     var StraightLine = function(point0, point1, lineStyle) {
 
-        console.log("creating straight line from [" + 
+       console.log("creating straight line from [" + 
                     point0[0] + "," + point0[1] + "] to [" +
                     point1[0] + "," + point1[1] + "].");
         
@@ -79,7 +79,6 @@ define(["util", "vec2", "scene", "point_dragger"],
         var d = vec2.length(vec2.sub(p,pos));
         
         // allow 2 pixels extra "sensitivity"
-		console.log(d<=(this.lineStyle.width/2)+2);
         return d<=(this.lineStyle.width/2)+2;
         
     };
@@ -102,6 +101,22 @@ define(["util", "vec2", "scene", "point_dragger"],
         return draggers;
         
     };
+	
+	StraightLine.prototype.getLineColor = function(){
+                return this.lineStyle.color;
+	};
+        
+    StraightLine.prototype.setLineColor = function(colorValue){
+                this.lineStyle.color = colorValue;
+	};
+        
+	StraightLine.prototype.getLineWidth = function(){
+                return this.lineStyle.width;
+	};
+        
+	StraightLine.prototype.setLineWidth = function(widthValue){
+                this.lineStyle.width = widthValue;
+	};
     
     // this module only exports the constructor for StraightLine objects
     return StraightLine;

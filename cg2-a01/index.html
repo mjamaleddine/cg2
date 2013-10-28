@@ -42,9 +42,11 @@
 		<button id="btnNewCircle" type="button"   >New Circle</button>
         <!-- add more here... -->
 		<h3>Change Values:</h3>
-		<p>Color: <input type="color"></p>
-		<p>Thickness: <input type="number"></p>
-
+		<ul style="list-style-type:none;">
+			<li>Color: <input id="ipColor" type="color"></li>
+			<li>Thickness: <input id="ipThickness" class="input" type="number" name="Thickness" autocomplete="off" min="1" max="5"></input></li>
+			<li id="Radius">Radius: <input id="ipRadius" class="input" type="number"></input></li>
+		</ul>
     </div>
     
     <div style="float:clear;">

@@ -29,9 +29,8 @@ define(["util", "vec2", "scene", "point_dragger"],
 
     var Circle = function(center, radius, lineStyle) {
 
-      //  console.log("creating straight line from [" + 
-        //            point0[0] + "," + point0[1] + "] to [" +
-          //          point1[0] + "," + point1[1] + "].");
+		console.log("creating circle with center point at [" + 
+                    center[0] + "," + center[1] + "] and radius [" + radius + "].");
         
         // draw style for drawing the line
         this.lineStyle = lineStyle || { width: "2", color: "#0000AA" };
@@ -87,6 +86,31 @@ define(["util", "vec2", "scene", "point_dragger"],
         
     };
     
+	Circle.prototype.getLineColor = function() {
+        return this.lineStyle.color;
+    };
+
+	Circle.prototype.setLineColor = function(colorValue) {
+        this.lineStyle.color = colorValue;
+	};
+
+	Circle.prototype.getLineWidth = function() {
+		return this.lineStyle.width;
+    };
+
+    Circle.prototype.setLineWidth = function(widthValue) {
+        this.lineStyle.width = widthValue;
+    };
+
+    Circle.prototype.getRadius = function() {
+        return this.radius;
+    };
+
+    Circle.prototype.setNewRadius = function(newRadius) {
+        this.radius = newRadius;
+    };
+		
+		
     // this module only exports the constructor for StraightLine objects
     return Circle;
 

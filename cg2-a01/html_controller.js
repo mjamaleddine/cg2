@@ -22,7 +22,8 @@ define(["jquery", "straight_line", "circle"],
      */
     var HtmlController = function(context,scene,sceneController) {
     
-    
+		$("#Radius").hide();
+		
         // generate random X coordinate within the canvas
         var randomX = function() { 
             return Math.floor(Math.random()*(context.canvas.width-10))+5; 
@@ -50,7 +51,7 @@ define(["jquery", "straight_line", "circle"],
             // convert to hex notation
             return "#"+toHex2(r)+toHex2(g)+toHex2(b);
         };
-        
+		        		 
         /*
          * event handler for "new line button".
          */
@@ -66,6 +67,8 @@ define(["jquery", "straight_line", "circle"],
                                          [randomX(),randomY()], 
                                          style );
             scene.addObjects([line]);
+			
+			$("#ipThickness").attr("value", line.getLineWidth());
 
             // deselect all objects, then select the newly created object
             sceneController.deselect();
@@ -81,17 +84,63 @@ define(["jquery", "straight_line", "circle"],
                 color: randomColor()
             };
                           
-            var line = new Circle( [randomX(),randomY()], 
+            var circle = new Circle( [randomX(),randomY()], 
                                          randomX(), 
                                          style );
-            scene.addObjects([line]);
+            scene.addObjects([circle]);
 
+			$("#ipRadius").attr("value", circle.getRadius());
+			 
             // deselect all objects, then select the newly created object
             sceneController.deselect();
-            sceneController.select(line); // this will also redraw
+            sceneController.select(circle); // this will also redraw
                         
         }));
         
+		sceneController.onSelection(function(obj){
+						selectionHandler();
+                        $('#ipThickness').val(obj.lineStyle.width);
+						$('#ipColor').val(obj.lineStyle.color);
+						$('#ipRadius').val(obj.radius);
+		});
+		
+		var selectionHandler = function() {
+			var obj = sceneController.getSelectedObject();
+			if (obj instanceof Circle) {
+				$("#Radius").show();
+			}
+                                
+			else if (obj instanceof StraightLine) {
+				$("#Radius").hide();
+			}
+        };
+		
+		$("#ipThickness").change((function() {
+                        var obj = sceneController.getSelectedObject();
+                        if (obj instanceof Circle || obj instanceof StraightLine /*|| obj instanceof ParametricCurve || obj instanceof BezierCurve*/) {
+                                obj.setLineWidth($("#ipThickness").attr("value"));
+                                sceneController.deselect();
+                                sceneController.select(obj);
+                        }
+		}));
+		
+		$("#ipColor").change((function() {
+                        var obj = sceneController.getSelectedObject();
+                        if (obj instanceof Circle || obj instanceof StraightLine /*|| obj instanceof ParametricCurve || obj instanceof BezierCurve*/) {
+                                obj.setLineColor($("#ipColor").attr("value"));
+                                sceneController.deselect();
+                                sceneController.select(obj);
+                        }
+        }));
+		
+		$("#ipRadius").change((function() {
+                        var obj = sceneController.getSelectedObject();
+                        if (obj instanceof Circle) {
+                                obj.setNewRadius($("#ipRadius").attr("value"));
+                                sceneController.deselect();
+                                sceneController.select(obj);
+                        }
+        }));
     
     };
 
