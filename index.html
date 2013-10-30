@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <!--
+         *
+         * JavaScript / Canvas teaching framwork 
+         * (C)opyright Hartmut Schirmacher, hschirmacher.beuth-hochschule.de 
+         *
+        -->
+
+        <title>CG2 A1: Lines, Curves &amp; Canvas</title>
+
+        <!-- import main module using RequireJS -->
+        <script data-main="main.js" src="../lib/require.js"></script>
+
+        <!-- import style sheet -->
+        <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+
+    </head>
+
+    <body>
+
+        <!-- this element will be used to diplay errors -->
+        <pre id="error"></pre>
+
+        <!-- centered region with drawing canvas and parameter area -->
+        <div align="center">
+
+            <canvas id="drawing_area" width="500" height="400" style="position:relative;">
+                <!-- NOTE: the "position:relative" is required due to the current  
+                     implementation of mouse coordinate processing in module "util". -->
+                If you see this text, your browser probably does not 
+                support the HTML5 canvas 2D drawing context. 
+            </canvas>
+
+            <div id="param_area" >
+                <div id="button_area">
+
+                    <h3>Create Objects:</h3>
+
+                    <button id="btnNewLine" type="button"   >New Line</button>
+                    <!-- add more here... -->
+                    <button id="btnNewCircle" type="button"   >New Circle</button>
+                </div>
+
+
+
+                <div id="input_area" class="inputContainer" >
+                    <br />
+                    <h3>Object Properties:</h3>
+
+                    <label>Your width of the line: </label>
+                    <p style="text-align:center"><input id="ipLineWidth" class="input" type="number" name="line" min="1" max="100"></p> 
+
+                    <label>Your color: </label>
+                    <p style="text-align:center"><input id="ipColor" class="input" type="color" name="colorname" /></p> 
+
+
+                    <div id="circleCircle" class="newProps">   
+                        <div class="radiusStyle"><label for="circleRadius">Your radius:</label>
+                            <p style="text-align:center"><input id="circRadius" class="input" type="number" name="radius" min="5" max="260"></input></p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div style="float:clear;">
+            </div>
+
+        </div>
+
+    </body>
+</html>
