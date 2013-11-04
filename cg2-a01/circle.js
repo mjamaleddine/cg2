@@ -64,9 +64,11 @@ define(["util", "vec2", "scene", "point_dragger"],
     
 		var dx = pos[0] - this.center[0];
         var dy = pos[1] - this.center[1];
-        var r = this.radius+(this.lineStyle.width/2)+2;
-
-        return (dx*dx + dy*dy) <= (r*r); 
+  		
+		var cond1 = Math.sqrt(dx * dx + dy * dy) <= (this.radius + (this.lineStyle.width/2) + 5);
+        var cond2 = Math.sqrt(dx * dx + dy * dy) >= (this.radius - (this.lineStyle.width/2) - 5);
+                
+		return cond1 && cond2;
         
     };
     
@@ -82,6 +84,10 @@ define(["util", "vec2", "scene", "point_dragger"],
         var setP0 = function(dragEvent) { _circle.center = dragEvent.position; };
         draggers.push( new PointDragger(getP0, setP0, draggerStyle) );
         
+		var getRadPoint = function() { return [_circle.center[0],(_circle.center[1] - _circle.radius)]; };
+        var setRadius = function(dragEvent) { _circle.radius = Math.abs(dragEvent.position[1] - _circle.center[1]) ;};
+        draggers.push( new PointDragger(getRadPoint, setRadius, draggerStyle) );
+
         return draggers;
         
     };
