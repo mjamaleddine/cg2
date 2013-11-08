@@ -11,8 +11,8 @@
 
 
 /* requireJS module definition */
-define(["jquery", "straight_line", "circle_line", "parametric_curves"],
-        (function($, StraightLine, CircleLine, ParaCurve) {
+define(["jquery", "straight_line", "circle_line", "parametric_curves", "bezier_curve"],
+        (function($, StraightLine, CircleLine, ParaCurve, BezierCurve) {
 
             "use strict";
             /*
@@ -104,6 +104,46 @@ define(["jquery", "straight_line", "circle_line", "parametric_curves"],
                 }));
 
                 /*
+                 * event handler for "BezierCurve".
+                 */
+
+                $("#btnNewBezierC").click((function() {
+
+                    var style = {
+                        width: Math.floor(Math.random() * 3) + 1,
+                        color: randomColor()
+                    };
+                    var x = randomX();
+                    var y = randomY();
+
+                    var p0 = [30 + x, 320];
+                    var p1 = [240, 80];
+                    var p2 = [400, 200 - y];
+                    var p3 = [300, 280];
+                    var segments = 60;
+                    var minMin_t = 0;
+                    var minMax_t = 1;
+
+                    var formula = "vec2.add(vec2.add(vec2.mult(p0, Math.pow((1 - t), 3)), vac2.mult(p1, 3 * t * Math.pow((1 - t), 2))), vec2.add(vec2.mult(p2, 3 * Math.pow(t, 2) * (1 - t)), vec2.mult(p3, Math.pow(t, 3))))";
+                    /*var a = "vec2.mult(p0,Math.pow((1- t),3))";
+                     var b = "vac2.mult(p1,3*t*Math.pow((1-t),2))";
+                     var c = vec2.add(vec2.mult(p2, 3 * Math.pow(t, 2) * (1 - t)), vec2.mult(p3, Math.pow(t, 3)))
+                     var d = "vec2.mult(p3,Math.pow(t,3))";*/
+
+                    var marks = true;
+                    var x = formula[0];
+                    var y = formula[1];
+                    var para = new ParaCurve(minMin_t, minMax_t, x, y, segments, style, marks);
+                    var beziercurve = new BezierCurve(p0, p1, p2, p3, para);
+
+                    scene.addObjects([beziercurve]);
+
+                    sceneController.deselect();
+                    sceneController.select(beziercurve);
+
+                }));
+
+                /*
                  * event handler for "parametric curve button".
                  */
                 $("#btnNewParaCurve").click((function() {
@@ -118,10 +158,10 @@ define(["jquery", "straight_line", "circle_line", "parametric_curves"],
                     var y = randomY();
 
                     var minMax_t = randomMinMax_t();
-                    var f_t = x + "+100*Math.sin(t);";
-                    var g_t = y + "+100*Math.cos(t);";
-
-                    var paraCurve = new ParaCurve(minMax_t[0], minMax_t[1], f_t, g_t, randomIntValue(5, 30), style);
+                    var f_t = x + "+100*Math.sin(t)";
+                    var g_t = y + "+100*Math.cos(t)";
+                    var marks = true;
+                    var paraCurve = new ParaCurve(minMax_t[0], minMax_t[1], f_t, g_t, randomIntValue(5, 30), style, marks);
                     console.log(paraCurve);
                     scene.addObjects([paraCurve]);
 
@@ -130,6 +170,12 @@ define(["jquery", "straight_line", "circle_line", "parametric_curves"],
                     sceneController.select(paraCurve); // this will also redraw
 
                 }));
+
+
+
+
+
+
                 /*
                  *show properties of selected Object		
                  */
@@ -143,6 +189,13 @@ define(["jquery", "straight_line", "circle_line", "parametric_curves"],
                     ;
                     if (obj instanceof ParaCurve) {
                         $("#paraCurveProps").show();
+                    }
+                    ;
+                    if (obj instanceof BezierCurve) {
+                        $("#paraCurveProps").show();
+                        $("#circleCircle").show();
+
+
                     }
                     ;
 
@@ -166,12 +219,25 @@ define(["jquery", "straight_line", "circle_line", "parametric_curves"],
                     ;
                     if (obj instanceof ParaCurve) {
 
-                        obj.min_t = parseFloat($("#ipParaCurveMinT").attr("value"));
-                        obj.max_t = parseFloat($("#ipParaCurveMaxT").attr("value"));
-                        obj.segment = parseFloat($("#ipParaCurveSeg").attr("value"));
+                        obj.min_t = parseInt($("#ipParaCurveMinT").attr("value"));
+                        obj.max_t = parseInt($("#ipParaCurveMaxT").attr("value"));
+                        obj.segment = parseInt($("#ipParaCurveSeg").attr("value"));
                         obj.f_t = $("#ipParaCurveX_t").attr("value");
                         obj.g_t = $("#ipParaCurveY_t").attr("value");
-                        obj.tickMarks = $("#cbParaCurve").is(':checked');
+                        obj.marks = $("#cbParaCurve").is("checked");
+
+                        console.log(obj.f_t + " \n" + obj.g_t);
+
+                    }
+                    ;
+                    if (obj instanceof BezierCurve) {
+
+
+                        obj.segment = parseInt($("#ipParaCurveSeg").attr("value"));
+                        obj.f_t = $("#ipParaCurveX_t").attr("value");
+                        obj.g_t = $("#ipParaCurveY_t").attr("value");
+                        obj.marks = $("#cbParaCurve").is(":checked");
+                        obj.r = parseFloat($("#circRadius").attr("value"));
 
                         console.log(obj.f_t + " \n" + obj.g_t);
 
@@ -194,11 +260,23 @@ define(["jquery", "straight_line", "circle_line", "parametric_curves"],
                     ;
                     if (obj instanceof ParaCurve) {
 
-                        $("#ipParaCurveMinT").attr("value", parseFloat(obj.min_t));
-                        $("#ipParaCurveMaxT").attr("value", parseFloat(obj.max_t));
-                        $("#ipParaCurveSeg").attr("value", parseFloat(obj.segment));
+                        $("#ipParaCurveMinT").attr("value", parseInt(obj.min_t));
+                        $("#ipParaCurveMaxT").attr("value", parseInt(obj.max_t));
+                        $("#ipParaCurveSeg").attr("value", parseInt(obj.segment));
                         $("#ipParaCurveX_T").attr("value", obj.f);
                         $("#ipParaCurveY_T").attr("value", obj.g);
+
+
+                    }
+                    ;
+                    if (obj instanceof BezierCurve) {
+
+                        $("#ipParaCurveMinT").attr("value", parseInt(obj.min_t));
+                        $("#ipParaCurveMaxT").attr("value", parseInt(obj.max_t));
+                        $("#ipParaCurveSeg").attr("value", parseInt(obj.segment));
+                        $("#ipParaCurveX_T").attr("value", obj.f);
+                        $("#ipParaCurveY_T").attr("value", obj.g);
+                        $("#circRadius").attr("value", parseFloat(obj.r));
 
                     }
                     ;
