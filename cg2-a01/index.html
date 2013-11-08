@@ -40,13 +40,44 @@
 
         <button id="btnNewLine" type="button"   >New Line</button>
 		<button id="btnNewCircle" type="button"   >New Circle</button>
+		<button id="btnNewParametricCurve" type="button"   >New ParametricCurve</button>
+		<button id="btnNewBezierCurve" type="button"   >New BezierCurve</button>
         <!-- add more here... -->
 		<h3>Change Values:</h3>
-		<ul style="list-style-type:none;">
-			<li>Color: <input id="ipColor" type="color"></li>
-			<li>Thickness: <input id="ipThickness" class="input" type="number" name="Thickness" autocomplete="off" min="1" max="5"></input></li>
-			<li id="Radius">Radius: <input id="ipRadius" class="input" type="number"></input></li>
-		</ul>
+		<table border="0" width="100%">
+			<tr>
+				<td>Color: </td>
+				<td><input id="ipColor" type="color"></input></td>
+			</tr>
+			<tr>
+				<td>Thickness: </td>
+				<td><input id="ipThickness" class="input" type="number" name="Thickness" autocomplete="off" min="1" max="5"></input></td>
+			</tr>
+			<tr id="Radius">
+				<td>Radius: </td>
+				<td><input id="ipRadius" class="input" type="number"></input></td>
+			</tr>
+			<tr id="x_t">
+				<td>x(t): </td>
+				<td><input id="ipx_t" class="input" type="text" value="100 + 50 * Math.cos(t);"></input></td>
+			</tr>
+			<tr id="y_t">
+				<td>y(t): </td>
+				<td><input id="ipy_t" class="input" type="text" value="150 + 50 * Math.sin(t);"></input></td>
+			</tr>
+			<tr id="t_min">
+				<td>Min t: </td>
+				<td><input id="ipt_min" class="input" type="number"></input></td>
+			</tr>
+			<tr id="t_max">
+				<td>Max t: </td>
+				<td><input id="ipt_max" class="input" type="number"></input></td>
+			</tr>
+			<tr id="Segments">
+				<td>Segments: </td>
+				<td><input id="ipSegments" class="input" type="number"></input></td>
+			</tr>			
+		</table>
     </div>
     
     <div style="float:clear;">
