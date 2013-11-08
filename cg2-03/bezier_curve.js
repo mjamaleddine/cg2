@@ -9,6 +9,8 @@
 define(["jquery", "util", "vec2", "scene", "point_dragger", "parametric_curves", "straight_line"],
         (function($, Util, vec2, Scene, PointDragger, ParaCurve, StraightLine) {
 
+
+
             "use strict";
 
             var BezierCurve = function(p0, p1, p2, p3, para) {
