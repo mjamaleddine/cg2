@@ -32,27 +32,27 @@ define(["jquery", "util", "vec2", "scene", "point_dragger", "parametric_curves",
                         "\nt_min " + this.min_t +
                         "\nt_max " + this.max_t +
                         "\nsegments " + this.segment);
+
+                var p0 = this.p0;
+                var p1 = this.p1;
+                var p2 = this.p2;
+                var p3 = this.p3;
+
+
+                BezierCurve.prototype.parA = this.para;
+                BezierCurve.prototype.straightDrag = new StraightLine(p0, p3, this.draggerStyle);
+                BezierCurve.prototype.newDrag = new StraightLine(p1, p2, this.draggerStyle);
+                BezierCurve.parA.draw();
+                BezierCurve.parA.isHit();
+                //  BezierCurve.para.draw();
+
+                BezierCurve.straightDrag.createDraggers();
+                BezierCurve.straightDrag.isHit();
+
+                BezierCurve.newDrag.createDraggers();
+
+
             };
-            var p0 = this.p0;
-            var p1 = this.p1;
-            var p2 = this.p2;
-            var p3 = this.p3;
-
-
-            BezierCurve.prototype.parA = this.para;
-            BezierCurve.prototype.straightDrag = new StraightLine(p0, p3, this.draggerStyle);
-            BezierCurve.prototype.newDrag = new StraightLine(p1, p2, this.draggerStyle);
-            BezierCurve.parA.draw();
-            BezierCurve.parA.isHit();
-            //  BezierCurve.para.draw();
-
-            BezierCurve.straightDrag.createDraggers();
-            BezierCurve.straightDrag.isHit();
-
-            BezierCurve.newDrag.createDraggers();
-
-
-
 
             return BezierCurve;
 
