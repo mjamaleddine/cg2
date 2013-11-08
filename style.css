@@ -37,7 +37,49 @@ h3 {
     text-align:left;
 }
 
+.propsContainer{
+	width: 200px;
+}
+
 /* all input elements get a fixed width */
 input {
-    width:80px;
+    width:90px;
+	margin: 0px;
 }
+
+.labelStyle {
+	width: 80px;
+	float: left;
+}
+
+.inputCoord {
+	width: 45px;
+	margin: 0px;
+}
+
+.labelStyleCoord {
+	width: 70px;
+	float: left;
+}
+
+
+.inputFunc {
+	width:130px;
+	margin: 0px;
+}
+
+.paraCLabelStyle {
+	width: 40px;
+	float: left;
+}
+
+
+button {
+	width: 200px;
+}
+
+ul {
+	list-style-type: none;
+	padding-left: 5px;
+}
+

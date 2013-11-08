@@ -52,61 +52,56 @@
 
 
                 <div id="input_area" class="inputContainer" >
-                    
+
                     <h3>Object Properties:</h3>
                     <ul>
-                        <li id="propThickness">
-                            <div class="labelStyle"><div class="labelStyle"><label>Thickness: </label> </div>
-                                <input id="ipLineWidth" class="input" type="number" name="line" min="1" max="100"></input>
+                        <li>
+                            <div class="labelStyle"><label>Thickness: </label>  </div>
+                            <input id="ipLineWidth" class="input" type="number" name="line" min="1" max="100"></input>
                         </li>
-                        <li id="propColor">  
-                            <div class="labelStyle"> <label>Color: </label></div>
-                            <input id="ipColor" class="input" type="color" name="colorname" /></input> 
 
+                        <li>
+                            <div class="labelStyle"> <label>Color:</label></div>
+                            <input id="ipColor" class="input" type="color" name="colorname" ></input> 
                         </li>
 
                         <div id="circleCircle" class="newProps">   
                             <li>
                                 <div class="labelStyle"><label for="circleRadius">Radius:</label></div>
                                 <input id="circRadius" class="input" type="number" name="radius" min="5" max="260"></input>
-
                             </li>
+
                         </div>
 
                         <div id="paraCurveProps" class="newProps">
-                            <li>
-                                <div class="labelStyle"><label for="ipParaCurveMinT" >min t: </label></div>
-                                <input id="ipParaCurveMinT" class="input min t" type="number" name="ParaCurveMinT" min="0" max="100" ></input>
-                            </li>
-                            <li>
-                                <div class="labelStyle"><label for="ipParaCurveMaxT" >max t: </label></div>
-                                <input id="ipParaCurveMaxT" class="input max t" type="number" name="ParaCurveMaxT" min="0" max="100" ></input>
-                            </li>
-                            <li>
-                                <div class="labelStyle"><label for="ipParaCurveSeg" >segments: </label></div>
-                                <input id="ipParaCurveSeg" class="input" type="number" name="ParaCurveSeg" min="2" max="100"></input>
-                            </li>
-                            <li>
-                                <div class="paraCLabelStyle"><label for="ipParaCurveX_t" >x(t): </label></div>
-                                <input id="ipParaCurveX_t" class="inputFunc maxX" type="text" name="ParaCurveX(t)" ></input>
-                            </li>
-                            <li>
-                                <div class="paraCLabelStyle"><label for="ipParaCurveY_t" >y(t): </label></div>
-                                <input id="ipParaCurveY_t" class="inputFunc maxY" type="text" name="ParaCurveY(t)" ></input>
-                            </li>
-                            <li>
-                                <div class="labelStyle"><lable for="cbParaCurve">Tickmarks:</lable></div>
-                                <input id="cbParaCurve" class="input" type="checkbox">
-                            </li>
-                        </div>  
-                    </ul>
 
+                            <div class="labelStyle"><label for="ipParaCurveMinT" >min t: </label></div>
+                            <input id="ipParaCurveMinT" class="input min t" type="number" name="ParaCurveMinT" min="0" max="100" ></input>
+
+
+                            <div class="labelStyle"><label for="ipParaCurveMaxT" >max t: </label></div>
+                            <input id="ipParaCurveMaxT" class="input max t" type="number" name="ParaCurveMaxT" min="0" max="100" ></input>
+
+                            <div class="labelStyle"><label for="ipParaCurveSeg" >segments: </label></div>
+                            <input id="ipParaCurveSeg" class="input" type="number" name="ParaCurveSeg" min="2" max="100"></input>
+
+                            <div class="paraCLabelStyle"><label for="ipParaCurveX_t" >x(t): </label></div>
+                            <input id="ipParaCurveX_t" class="inputFunc maxX" type="text" name="ParaCurveX(t)" ></input>
+
+                            <div class="paraCLabelStyle"><label for="ipParaCurveY_t" >y(t): </label></div>
+                            <input id="ipParaCurveY_t" class="inputFunc maxY" type="text" name="ParaCurveY(t)" ></input>
+
+                            <div class="labelStyle"><label for="cbParaCurve">Tickmarks:</label></div>
+                            <input id="cbParaCurve" class="input" type="checkbox"  value="true" checked=""  >
+
+                        </div>
+
+
+                    </ul>
                 </div>
             </div>
             <div style="float:clear;">
             </div>
-
         </div>
-
     </body>
 </html>

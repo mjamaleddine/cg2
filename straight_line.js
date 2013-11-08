@@ -70,7 +70,7 @@ define(["util", "vec2", "scene", "point_dragger"],
         // outside the line segment?
         if(t<0.0 || t>1.0) {
             return false; 
-        }
+        };
         
         // coordinates of the projected point 
         var p = vec2.add(this.p0, vec2.mult( vec2.sub(this.p1,this.p0), t ));
