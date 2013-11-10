@@ -15,6 +15,8 @@ define(["util", "vec2", "scene", "point_dragger"],
 
     var ParametricCurve = function(f_t, g_t, t_min, t_max, segments, lineStyle) {
 
+		console.log("creating parametric curve"); 
+		
         // draw style for drawing the line
         this.lineStyle = lineStyle || { width: "2", color: "#0000AA" };
 
@@ -142,7 +144,6 @@ define(["util", "vec2", "scene", "point_dragger"],
 	};	
 	
     
-    // this module only exports the constructor for StraightLine objects
     return ParametricCurve;
 
 })); // define

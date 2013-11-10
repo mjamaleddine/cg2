@@ -142,7 +142,7 @@ define(["jquery", "straight_line", "circle", "parametric_curve", "bezier_curve"]
             var p2 = [randomX(),randomY()];
             var p3 = [randomX(),randomY()];
             
-            var bezcurve = new BezierCurve();
+            var bezcurve = new BezierCurve(p0,p1,p2,p3,style);
             
             scene.addObjects([bezcurve]);
 
@@ -194,15 +194,14 @@ define(["jquery", "straight_line", "circle", "parametric_curve", "bezier_curve"]
 				$("#t_min").show();
 				$("#t_max").show();
 				$("#Segments").show();
-			}
-			
-			else if (obj instanceof BezierCurve) {
-				$("#Radius").hide();
-				$("#x_t").hide();
-				$("#y_t").hide();
-				$("#t_min").show();
-				$("#t_max").show();
-				$("#Segments").show();
+				if (obj instanceof BezierCurve){
+					$("#Radius").hide();
+					$("#x_t").hide();
+					$("#y_t").hide();
+					$("#t_min").hide();
+					$("#t_max").hide();
+					$("#Segments").show();
+				}
 			}
         };
 		
