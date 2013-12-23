@@ -4,12 +4,6 @@ body {
     background-color:white;
 }
 
-/* subsection titles for the parameter area */
-h3 {
-    color: #000055;
-    font-size:14px;
-}
-
 /* region to display an error */
 #error { 
     color:white; 
@@ -29,7 +23,7 @@ h3 {
 /* container to display editable parameters */
 #param_area {
     float:left;
-    width:200px;
+    width:300px;
     height:400px;
     border-width:1px;
     border-style: dashed;
@@ -37,49 +31,18 @@ h3 {
     text-align:left;
 }
 
-.propsContainer{
-	width: 200px;
+td {
+    vertical-align:top;
+    text-align:left;
 }
 
-/* all input elements get a fixed width */
-input {
-    width:90px;
-	margin: 0px;
+/* some input elements get a fixed width */
+#anim_Speed {
+    width:70px;
 }
-
-.labelStyle {
-	width: 80px;
-	float: left;
+#curve_x {
+    width:150px;
 }
-
-.inputCoord {
-	width: 45px;
-	margin: 0px;
+#curve_y {
+    width:150px;
 }
-
-.labelStyleCoord {
-	width: 70px;
-	float: left;
-}
-
-
-.inputFunc {
-	width:130px;
-	margin: 0px;
-}
-
-.paraCLabelStyle {
-	width: 40px;
-	float: left;
-}
-
-
-button {
-	width: 200px;
-}
-
-ul {
-	list-style-type: none;
-	padding-left: 5px;
-}
-
